@@ -17,11 +17,17 @@ namespace LearningApp.API.Controllers
             this.userService = userService;
         }
 
-        [HttpPost]
+        [HttpPost("[action]")]
         public IActionResult Register(RegisterDto dto)
         {
             var result = this.userService.RegisterUser(dto);
             return Created("", result);
+        }
+
+        [HttpPost("Token")]
+        public IActionResult Login(LoginDto dto){
+            // this.userService.
+            return Created("","");
         }
     }
 }

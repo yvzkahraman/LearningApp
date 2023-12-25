@@ -15,6 +15,10 @@ namespace LearningApp.Data.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AppUserConfiguration());
+
+            modelBuilder.Entity<Course>().Property(x=>x.Price).HasPrecision(18,2);
+
+            
             base.OnModelCreating(modelBuilder);
         }
 

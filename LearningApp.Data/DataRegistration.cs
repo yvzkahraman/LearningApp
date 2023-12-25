@@ -1,4 +1,6 @@
 ﻿using LearningApp.Data.Contexts;
+using LearningApp.Data.Interfaces;
+using LearningApp.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,8 +18,10 @@ namespace LearningApp.Data
         {
             services.AddDbContext<LearningContext>(opt =>
             {
-                opt.UseSqlServer(configuration.GetConnectionString("Local"));
+                opt.UseSqlServer(configuration.GetConnectionString("Docker"));
             });
+
+            services.AddScoped<IUserRepository, UserRepository>();
         }
     }
 }

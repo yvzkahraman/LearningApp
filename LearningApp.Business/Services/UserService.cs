@@ -1,28 +1,23 @@
 ﻿using LearningApp.Business.Dtos;
 using LearningApp.Business.Interfaces;
-using LearningApp.Data.Contexts;
 using LearningApp.Data.Enums;
-using LearningApp.Data.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using LearningApp.Data.Interfaces;
 
 namespace LearningApp.Business.Services
 {
     public class UserService : IUserService
     {
-        private readonly LearningContext context;
 
-        public UserService(LearningContext context)
+        private readonly IUserRepository userRepository;
+
+        public UserService(IUserRepository userRepository)
         {
-            this.context = context;
+            this.userRepository = userRepository;
         }
 
         public UserDto RegisterUser(RegisterDto dto)
         {
-           var createdUser =  new UserRepository(context).AddUser(new Data.Entities.AppUser
+           var createdUser = this.userRepository.AddUser(new Data.Entities.AppUser
             {
                 CreatedDate = DateTime.Now,
                 FullName = dto.FullName,
@@ -38,6 +33,17 @@ namespace LearningApp.Business.Services
                 Fullname = createdUser.FullName,
                 Username = createdUser.Username,
             };
+        }
+
+        public TokenDto? CheckUser(LoginDto dto){
+            var user = this.userRepository.GetUser(x=>x.Username == dto.Username && x.Password == dto.Password);
+            if(user!=null){
+                return new TokenDto(){
+                    FullName = user.FullName,
+                    Username= user.Username,
+                };
+            }
+            return null;
         }
     }
 }
