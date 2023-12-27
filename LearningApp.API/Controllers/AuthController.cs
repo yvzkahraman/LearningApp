@@ -25,9 +25,15 @@ namespace LearningApp.API.Controllers
         }
 
         [HttpPost("Token")]
-        public IActionResult Login(LoginDto dto){
-            // this.userService.
-            return Created("","");
+        public IActionResult Login(LoginDto dto)
+        {
+            var result = this.userService.CheckUser(dto);
+            if (result != null)
+            {
+                return Created("", result);
+            }
+            return BadRequest("Kullanıcı adı veya şifre hatalı");
+
         }
     }
 }

@@ -6,7 +6,7 @@ namespace LearningApp.Business.Defaults
         public const string Audience = "http://localhost";
         public const string Issuer = "http://localhost";
 
-        public const string Key = "yavuzyavuzFullStack.";
+        public const string Key = "yavuzyavuzFullStack.__yavuzIHKJK";
 
         public const int Expire = 10;
     }
