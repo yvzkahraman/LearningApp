@@ -1,6 +1,7 @@
 ﻿using LearningApp.Data.Contexts;
 using LearningApp.Data.Entities;
 using LearningApp.Data.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;

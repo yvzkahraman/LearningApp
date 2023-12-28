@@ -9,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+//ConfigureBusinessServices  || ONION 
+// ConfigureAuthentication();
+
 builder.Services.AddBusinessServices(builder.Configuration);
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
