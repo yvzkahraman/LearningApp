@@ -1,10 +1,12 @@
 ﻿using LearningApp.Business.Dtos;
 using LearningApp.Business.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LearningApp.API.Controllers
 {
+    [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase

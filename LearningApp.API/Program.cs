@@ -14,12 +14,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddBusinessServices(builder.Configuration);
 
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("custom", conf =>
+    {
+        conf.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
 {
     opt.RequireHttpsMetadata = false;
     opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
     {
-        ValidAudience= TokenDefaults.Audience,
+        ValidAudience = TokenDefaults.Audience,
         ValidIssuer = TokenDefaults.Issuer,
         ClockSkew = TimeSpan.Zero,
         ValidateLifetime = true,
@@ -42,6 +50,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("custom");
 app.UseAuthorization();
 
 app.MapControllers();

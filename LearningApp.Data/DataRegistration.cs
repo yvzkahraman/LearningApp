@@ -23,6 +23,8 @@ namespace LearningApp.Data
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IInstructorRepository, InstructorRepository>();
         }
     }
 }

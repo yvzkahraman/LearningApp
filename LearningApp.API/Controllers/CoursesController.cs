@@ -1,9 +1,11 @@
 using LearningApp.Business.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LearningApp.API.Controllers
 {
+    [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
     public class CoursesController : ControllerBase
@@ -33,7 +35,8 @@ namespace LearningApp.API.Controllers
 
                 var result = this.courseService.GetMyCourses(username);
 
-                if (result != null){
+                if (result != null)
+                {
                     return Ok(result);
                 }
 

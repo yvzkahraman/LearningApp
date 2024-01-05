@@ -11,8 +11,11 @@ namespace LearningApp.Business
     {
         public static void AddBusinessServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<IUserService,UserService>();
-            services.AddScoped<ICourseService,CourseService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<IPaymentService, PaymentService>();
+            services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IInstructorService, InstructorService>();
             services.AddDataServices(configuration);
         }
     }
